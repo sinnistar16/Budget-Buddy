@@ -47,7 +47,6 @@ BudgetBuddy/
 
 1. **Clone the Repository**:
 
-📷 Screenshots
 <img width="188" alt="image" src="https://github.com/user-attachments/assets/2052f4b9-6614-4961-81b6-09989c990910" />
 <img width="189" alt="image" src="https://github.com/user-attachments/assets/ac592786-b0ae-42c2-97d2-2455d9abebde" />
 <img width="186" alt="image" src="https://github.com/user-attachments/assets/f6c6eaec-6283-4d2d-bd03-fc87b5f08940" />
