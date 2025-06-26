@@ -1,0 +1,91 @@
+﻿<Window x:Class="CyberChatBot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cybersecurity Chatbot" Height="700" Width="900"
+        Background="#1e1e2f" Foreground="White" FontFamily="Segoe UI">
+
+	<Window.Resources>
+		<Style x:Key="RoundedButtonStyle" TargetType="Button">
+			<Setter Property="Background" Value="#374a8a"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="Padding" Value="8,4"/>
+			<Setter Property="Margin" Value="5"/>
+			<Setter Property="MinWidth" Value="100"/>
+			<Setter Property="Height" Value="32"/>
+			<Setter Property="BorderThickness" Value="0"/>
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Border Background="{TemplateBinding Background}" CornerRadius="15">
+							<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Border>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Background" Value="#4c60c3"/>
+				</Trigger>
+				<Trigger Property="IsPressed" Value="True">
+					<Setter Property="Background" Value="#2e3a72"/>
+				</Trigger>
+				<Trigger Property="IsEnabled" Value="False">
+					<Setter Property="Background" Value="#888"/>
+					<Setter Property="Foreground" Value="#ccc"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+	</Window.Resources>
+
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="40"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="100"/>
+			<RowDefinition Height="30"/>
+		</Grid.RowDefinitions>
+
+		<TextBlock x:Name="UserNameDisplay" FontSize="18" FontWeight="Bold" Grid.Row="0" Margin="5" Text="Welcome, Guest!" />
+
+		<StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="0,10">
+			<Button Style="{StaticResource RoundedButtonStyle}" Content="Chat" Click="ShowChat"/>
+			<Button Style="{StaticResource RoundedButtonStyle}" Content="Tasks" Click="ShowTasks"/>
+			<Button Style="{StaticResource RoundedButtonStyle}" Content="Quiz" Click="ShowQuiz"/>
+			<Button Style="{StaticResource RoundedButtonStyle}" Content="Activity Log" Width="120" Click="ShowActivityLog"/>
+		</StackPanel>
+
+		<Grid Grid.Row="2">
+			<Grid x:Name="ChatPanel" Visibility="Visible">
+				<TextBox x:Name="ChatDisplay" Margin="5" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" FontSize="14"/>
+			</Grid>
+			<Grid x:Name="TasksPanel" Visibility="Collapsed" Margin="5">
+				<ScrollViewer Height="350">
+					<ListBox x:Name="TaskListBox" Background="#2c2c44" Foreground="White" FontSize="14"/>
+				</ScrollViewer>
+			</Grid>
+			<Grid x:Name="QuizPanel" Visibility="Collapsed" Margin="5">
+				<StackPanel>
+					<TextBlock x:Name="QuizQuestionText" FontSize="16" TextWrapping="Wrap" Margin="0,0,0,10"/>
+					<StackPanel x:Name="QuizOptionsPanel" />
+					<TextBlock x:Name="QuizFeedbackText" FontSize="14" Foreground="LightGreen" Margin="0,10,0,0" TextWrapping="Wrap"/>
+					<Button x:Name="QuizStartButton" Style="{StaticResource RoundedButtonStyle}" Content="Start Quiz" Width="120" Margin="0,10,0,0" Click="QuizStartButton_Click"/>
+				</StackPanel>
+			</Grid>
+			<Grid x:Name="ActivityPanel" Visibility="Collapsed">
+				<TextBox x:Name="ActivityDisplay" Margin="5" IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" FontSize="14"/>
+			</Grid>
+		</Grid>
+
+		<DockPanel Grid.Row="3" Margin="5">
+			<TextBox x:Name="MessageInput" KeyDown="MessageInput_KeyDown" Margin="0,0,5,0" VerticalAlignment="Center" Width="750" FontSize="14"/>
+			<Button Style="{StaticResource RoundedButtonStyle}" Content="Send" Width="100" Click="SendButton_Click"/>
+		</DockPanel>
+
+		<TextBlock x:Name="TipDisplay" Grid.Row="4" FontSize="14" FontStyle="Italic" Margin="5,0,5,0" Foreground="LightBlue" TextWrapping="Wrap" />
+	</Grid>
+</Window>
